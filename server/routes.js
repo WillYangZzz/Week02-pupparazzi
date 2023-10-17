@@ -30,4 +30,21 @@ router.get('/:id/edit', async (req, res) => {
 
 // POST /puppies/:id/edit
 
+router.post('/:id/:id/edit', async (req, res) => {
+  const id = req.params.id
+
+  console.log(req.body.name)
+  res.send(`${id} is a great puppy`)
+
+  // const puppiesJSONwrite = await writeFile(
+  //   Path.resolve('./server/data/data.json'),
+  //   {
+  //     encoding: 'utf8',
+  //   }
+  // )
+  // const viewData = JSON.parse(puppiesJSON)
+
+  // res.render('edit', viewData.puppies[id - 1])
+})
+
 export default router
