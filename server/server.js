@@ -6,6 +6,8 @@ import hbs from 'express-handlebars'
 // import puppies from './data/data.json' assert { type: 'json' }
 import { readFile, writeFile } from 'node:fs/promises'
 
+import puppiesRouter from './routes.js'
+
 const server = express()
 
 // Server configuration
@@ -28,6 +30,8 @@ server.get('/', async (req, res) => {
   // console.log(viewData)
   res.render('home', viewData)
 })
+
+server.use('/puppies', puppiesRouter)
 
 // async function puppies() {
 //   const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
