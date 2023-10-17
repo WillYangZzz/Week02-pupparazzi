@@ -3,7 +3,8 @@ import * as Path from 'node:path'
 
 import express from 'express'
 import hbs from 'express-handlebars'
-import puppies from './data/data.json' assert { type: 'json' }
+// import puppies from './data/data.json' assert { type: 'json' }
+import { readFile, writeFile } from 'node:fs/promises'
 
 const server = express()
 
@@ -19,9 +20,22 @@ server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
 
-server.get('/', (req, res) => {
-  const viewData = puppies
+server.get('/', async (req, res) => {
+  const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
+    encoding: 'utf8',
+  })
+  const viewData = JSON.parse(puppiesJSON)
+  // console.log(viewData)
   res.render('home', viewData)
 })
+
+// async function puppies() {
+//   const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
+//     encoding: 'utf8',
+//   })
+//   console.log(puppiesJSON)
+// }
+
+// puppies()
 
 export default server
