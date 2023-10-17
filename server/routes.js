@@ -49,23 +49,23 @@ router.post('/:id/:id/edit', async (req, res) => {
       el.name = req.body.name
       el.breed = req.body.breed
       el.owner = req.body.owner
-      console.log(el)
-    } else console.log(el)
+    }
+    return el
   })
 
-  // let puppyEdit = JSON.stringify(puppyNumber, null, 2)
+  let puppyEdit = JSON.stringify(puppyNumber, null, 2)
 
-  console.log(puppyNumber)
+  // console.log(puppyEdit)
 
-  // const puppiesJSONwrite = await writeFile(
-  //   Path.resolve('./server/data/data.json'),
-  //   puppyEdit,
-  //   (err) => {
-  //     if (!err) {
-  //       console.log('done')
-  //     }
-  //   }
-  // )
+  const puppiesJSONwrite = await writeFile(
+    Path.resolve('./server/data/data.json'),
+    puppyEdit,
+    (err) => {
+      if (!err) {
+        console.log('done')
+      }
+    }
+  )
 
   res.send(`${id - 1} is a great puppy`)
 
