@@ -20,9 +20,7 @@ server.set('views', Path.resolve('server/views'))
 // Your routes/router(s) should go here
 
 server.get('/', (req, res) => {
-  const viewData = puppies.puppies
-  console.log(viewData)
-
+  const viewData = puppies
   res.render('home', viewData)
 })
 
