@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
   })
   const viewData = JSON.parse(puppiesJSON)
   // console.log(viewData)
-  res.render('details', viewData)
+  res.render('details', viewData.puppies[id - 1])
 })
 
 export default router
