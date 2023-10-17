@@ -3,6 +3,7 @@ import * as Path from 'node:path'
 
 import express from 'express'
 import hbs from 'express-handlebars'
+import puppies from './data/data.json' assert { type: 'json' }
 
 const server = express()
 
@@ -19,7 +20,10 @@ server.set('views', Path.resolve('server/views'))
 // Your routes/router(s) should go here
 
 server.get('/', (req, res) => {
-  res.send('pupparazzi')
+  const viewData = puppies.puppies
+  console.log(viewData)
+
+  res.render('home', viewData)
 })
 
 export default server
