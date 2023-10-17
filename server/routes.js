@@ -33,15 +33,42 @@ router.get('/:id/edit', async (req, res) => {
 router.post('/:id/:id/edit', async (req, res) => {
   const id = req.params.id
 
-  console.log(req.body.name)
-  res.send(`${id} is a great puppy`)
+  // let puppyData = {
+  //   name: req.body.name,
+  //   breed: req.body.breed,
+  //   owner: req.body.owner,
+  // }
+
+  const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
+    encoding: 'utf8',
+  })
+  const viewData = JSON.parse(puppiesJSON)
+
+  let puppyNumber = viewData.puppies.map((el) => {
+    if (el.id == id) {
+      el.name = req.body.name
+      el.breed = req.body.breed
+      el.owner = req.body.owner
+      console.log(el)
+    } else console.log(el)
+  })
+
+  // let puppyEdit = JSON.stringify(puppyNumber, null, 2)
+
+  console.log(puppyNumber)
 
   // const puppiesJSONwrite = await writeFile(
   //   Path.resolve('./server/data/data.json'),
-  //   {
-  //     encoding: 'utf8',
+  //   puppyEdit,
+  //   (err) => {
+  //     if (!err) {
+  //       console.log('done')
+  //     }
   //   }
   // )
+
+  res.send(`${id - 1} is a great puppy`)
+
   // const viewData = JSON.parse(puppiesJSON)
 
   // res.render('edit', viewData.puppies[id - 1])
