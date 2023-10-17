@@ -4,8 +4,10 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 
-import puppyData from './getPuppies.js'
+import getPuppyData from './getPuppies.js'
 import router from './routes.js'
+
+const puppyData = await getPuppyData()
 
 const server = express()
 
