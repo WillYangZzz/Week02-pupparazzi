@@ -6,6 +6,8 @@ import hbs from 'express-handlebars'
 
 import { readFile } from 'node:fs/promises'
 
+import router from './routes.js'
+
 const server = express()
 
 // Server configuration
@@ -19,18 +21,21 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Get puppy data
-let dataJSON
+let puppyData
 try {
   const filePath = new URL('./data/data.json', import.meta.url)
   const data = await readFile(filePath, { encoding: 'utf8' })
-  dataJSON = JSON.parse(data)
+  puppyData = JSON.parse(data)
   // console.log(data)
 } catch (err) {
   console.error(err.message)
 }
 
+server.use('/', router)
+
 // Your routes/router(s) should go here
 server.get('/', (req, res) => {
-  res.render('home', dataJSON)
+  res.render('home', puppyData)
 })
+
 export default server
