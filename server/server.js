@@ -4,8 +4,7 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 
-import { readFile } from 'node:fs/promises'
-
+import puppyData from './getPuppies.js'
 import router from './routes.js'
 
 const server = express()
@@ -19,17 +18,6 @@ server.use(express.urlencoded({ extended: false }))
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
 server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
-
-// Get puppy data
-let puppyData
-try {
-  const filePath = new URL('./data/data.json', import.meta.url)
-  const data = await readFile(filePath, { encoding: 'utf8' })
-  puppyData = JSON.parse(data)
-  // console.log(data)
-} catch (err) {
-  console.error(err.message)
-}
 
 server.use('/', router)
 
