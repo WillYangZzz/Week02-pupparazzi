@@ -4,6 +4,8 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 
+import fs from 'node:fs/promises'
+import puppyData from './data/data.json' assert { type: 'json' }
 
 const server = express()
 
@@ -18,5 +20,9 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
+
+server.get('/', (req, res) => {
+  res.render('home', puppyData)
+})
 
 export default server
