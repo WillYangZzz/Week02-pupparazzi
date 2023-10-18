@@ -25,11 +25,7 @@ router.post('/edit/:id', async (req, res) => {
 
   const updatedPuppyData = {
     puppies: puppyData.puppies.map((pup) => {
-      if (parseInt(pup.id) === parseInt(req.params.id)) {
-        return updatedPuppy
-      } else {
-        return pup
-      }
+      return parseInt(pup.id) === parseInt(req.params.id) ? updatedPuppy : pup
     }),
   }
   savePuppies(updatedPuppyData)
