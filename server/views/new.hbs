@@ -1,12 +1,10 @@
 <h2 class="title">Add a new puppy</h2>
 
-<form class="form" action="/new" method="post">
+
+<form class="form" action="/puppies/new" method="post">
+
   <label for="name" class="form-item">
     Name: <input type="text" name="name" id="name">
-  </label>
-
-  <label for="breed" class="form-item">
-    Breed: <input type="text" name="breed" id="breed">
   </label>
 
   <label for="owner" class="form-item">
@@ -17,6 +15,11 @@
   <label for="image" class="form-item">
     Image URL: <input type="text" name="image" id="image">
   </label>
+
+  <label for="breed" class="form-item">
+    Breed: <input type="text" name="breed" id="breed">
+  </label>
+  
 
   <input type="submit" value="Submit">
 </form>

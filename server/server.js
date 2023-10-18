@@ -4,10 +4,9 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 // import puppies from './data/data.json' assert { type: 'json' }
-import { readFile } from 'node:fs/promises'
 
 import puppiesRouter from './routes.js'
-import { read, write } from './readandwrite.js'
+import { read } from './readandwrite.js'
 
 const server = express()
 
