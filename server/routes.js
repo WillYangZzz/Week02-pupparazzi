@@ -33,7 +33,6 @@ router.post('/:id/edit', async (req, res) => {
 
   const data = await fs.readFile(dataPath, 'utf-8')
   const puppiesData = JSON.parse(data)
-  console.log(puppiesData)
   // puppiesData.puppies[puppyId - 1] = puppyObj
 
   const updatedPuppy = puppiesData.puppies.map((el) => {
