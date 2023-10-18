@@ -3,6 +3,24 @@ const router = express.Router()
 
 import { getPuppies, savePuppies } from './utils/getData.js'
 
+router.get('/new', (req, res) => {
+  res.render('new')
+})
+
+router.post('/new', async (req, res) => {
+  const puppyData = await getPuppies()
+  const newId = puppyData.puppies.length + 1
+
+  const { name, owner, breed, image } = req.body
+  const newPuppy = { id: newId, name, owner, breed, image }
+
+  const updatedPuppyData = {
+    puppies: [...puppyData.puppies, newPuppy],
+  }
+  savePuppies(updatedPuppyData)
+  res.redirect(`/${newId}`)
+})
+
 // GET the puppy edit form
 router.get('/edit/:id', async (req, res) => {
   const puppyData = await getPuppies()
