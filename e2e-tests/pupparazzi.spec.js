@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test'
 import * as fs from 'node:fs/promises'
 
-let initialData 
+let initialData
 
 test.beforeAll(async () => {
   // remember how our data looked when we started
@@ -21,12 +21,12 @@ test.afterAll(async () => {
 })
 
 test('has title', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/puppies')
   await expect(page).toHaveTitle(/Pupparazzi/)
 })
 
 test('link to coco', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/puppies')
 
   // Click on coco
   await page.getByAltText('Coco').click()
@@ -38,7 +38,7 @@ test('link to coco', async ({ page }) => {
 })
 
 test('edit coco', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/puppies')
 
   // Click the get started link.
   await page.getByAltText('Coco').click()
@@ -58,7 +58,7 @@ test('edit coco', async ({ page }) => {
 })
 
 test('making a brand new puppy', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/puppies')
 
   await page.getByRole('link', { name: 'Add Puppy' }).click()
 
