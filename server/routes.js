@@ -1,67 +1,40 @@
 import express from 'express'
 // import pups from './server.js'
-import { readFile, writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises'
+import { readFileSync } from 'fs'
 
 const router = express.Router()
 
-const read = await readFile('server/data/data.json', { encoding: 'utf-8' })
+function getAllDogs() {
+  const read = readFileSync('server/data/data.json', { encoding: 'utf-8' })
 
-let pups = JSON.parse(read)
-// let pups = read
-// [
-//   {
-//     id: 5,
-//     name: 'Murphy',
-//     owner: 'Matthew',
-//     image: '/images/puppy5.jpg',
-//     breed: 'Pug',
-//   },
-// ]
+  return JSON.parse(read, null, 2)
+}
 
-router.get('/', (req, res) => {
-  const viewData = pups
+function findDogById(id) {
+  const read = readFileSync('server/data/data.json', { encoding: 'utf-8' })
 
-  res.render('home', viewData)
-})
+  let pups = JSON.parse(read)
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id
-  // pups = { id: id }
-  const viewData = pups['puppies'].find((el) => el['id'] === Number(id))
-  res.render('details', viewData)
-})
+  const puppy = pups['puppies'].find((el) => el['id'] === Number(id))
 
-router.get('/edit/:id', (req, res) => {
-  const id = req.params.id
-  // pups = { id: id }
-  const viewData = pups['puppies'].find((el) => el['id'] === Number(id))
-  res.render('edit', viewData)
-})
+  return puppy
+}
 
-router.post('/edit/:id', (req, res) => {
-  const id = req.params.id
+function updateTheDog(dog) {
+  const { id, name, owner, breed, image } = dog
 
-  const name = req.body.name
-  const owner = req.body.owner
-  const breed = req.body.breed
-
-  console.log(req.body)
+  const pups = getAllDogs()
 
   const newData = pups['puppies'].map((item) => {
     if (item.id === Number(id)) {
-      item = { id, name, owner, breed }
+      item = { id, name, owner, breed, image }
       console.log(' I Found coco')
       return item
     } else {
       return item
     }
-
-    // const finalData = {
-    //   item,
-    // }
   })
-
-  // const obj= JSON.stringify(newData, null, 2)
 
   const obj = {
     puppies: newData,
@@ -70,7 +43,40 @@ router.post('/edit/:id', (req, res) => {
   console.log(obj)
   const temp = JSON.stringify(obj, null, 2)
 
-  writeFile('server/data/data.json', temp)
+  return writeFile('server/data/data.json', temp)
+}
+
+router.get('/', (req, res) => {
+  const viewData = getAllDogs()
+
+  res.render('home', viewData)
+})
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  // pups = { id: id }
+  const viewData = findDogById(id)
+  res.render('details', viewData)
+})
+
+router.get('/edit/:id', (req, res) => {
+  const id = req.params.id
+  // pups = { id: id }
+  const viewData = findDogById(id)
+  res.render('edit', viewData)
+})
+
+router.post('/edit/:id', (req, res) => {
+  const id = Number(req.params.id)
+  const name = req.body.name
+  const owner = req.body.owner
+  const image = req.body.image
+  const breed = req.body.breed
+
+  const dog = { id, name, owner, image, breed }
+
+  updateTheDog(dog)
+  // const obj= JSON.stringify(newData, null,
 
   res.redirect('/puppies/')
 })

@@ -8,17 +8,18 @@
       "breed": "Labrador"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Coco",
-      "owner": "Lewis",
-      "breed": "Labrador"
+      "owner": "Chloe",
+      "breed": "Labrador",
+      "image": "/images/puppy2.jpg"
     },
     {
       "id": 3,
-      "name": "Magnum",
+      "name": "Magnum PI",
       "owner": "Michael",
-      "image": "/images/puppy3.jpg",
-      "breed": "Rottweiler"
+      "breed": "Rottweiler",
+      "image": "/images/puppy3.jpg"
     },
     {
       "id": 4,
