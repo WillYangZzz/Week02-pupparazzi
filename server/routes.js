@@ -10,7 +10,6 @@ router.get('/new', (req, res) => {
 
 router.post('/new', async (req, res) => {
   const viewData = await read()
-  // const id = viewData.puppies.length + 1
 
   let newPuppy = {}
   newPuppy.id = viewData.puppies.length + 1
@@ -21,7 +20,6 @@ router.post('/new', async (req, res) => {
 
   viewData.puppies.push(newPuppy)
 
-  // let newJSON = { puppies }
   let puppyEdit = JSON.stringify(viewData, null, 2)
   await write(puppyEdit)
 
