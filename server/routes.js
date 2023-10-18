@@ -63,7 +63,7 @@ router.post('/:id/:id/edit', async (req, res) => {
     }
   )
 
-  res.redirect(`/`)
+  res.redirect(`/puppies/${id}`)
 
   // const viewData = JSON.parse(puppiesJSON)
 
