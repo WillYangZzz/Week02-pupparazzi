@@ -1,6 +1,7 @@
 import express from 'express'
 import * as Path from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
+import { read } from './readandwrite.js'
 
 const router = express.Router()
 
@@ -8,11 +9,8 @@ const router = express.Router()
 router.get('/:id', async (req, res) => {
   const id = req.params.id
 
-  const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
-    encoding: 'utf8',
-  })
-  const viewData = JSON.parse(puppiesJSON)
-  // console.log(viewData)
+  const viewData = await read()
+
   res.render('details', viewData.puppies[id - 1])
 })
 
@@ -20,10 +18,7 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   const id = req.params.id
 
-  const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
-    encoding: 'utf8',
-  })
-  const viewData = JSON.parse(puppiesJSON)
+  const viewData = await read()
 
   res.render('edit', viewData.puppies[id - 1])
 })
@@ -33,10 +28,7 @@ router.get('/:id/edit', async (req, res) => {
 router.post('/:id/:id/edit', async (req, res) => {
   const id = req.params.id
 
-  const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
-    encoding: 'utf8',
-  })
-  const viewData = JSON.parse(puppiesJSON)
+  const viewData = await read()
 
   let puppies = viewData.puppies.map((el) => {
     if (el.id == id) {
