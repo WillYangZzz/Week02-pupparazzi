@@ -34,20 +34,21 @@ router.get('/edit/:id', async (req, res) => {
 
 // POST the edited puppy data
 router.post('/edit/:id', async (req, res) => {
+  // get form data
+  const { name, owner, breed } = req.body
+
+  // get list of all puppies
   const puppyData = await getPuppies()
 
-  const puppy = puppyData.puppies.find((pup) => {
-    return parseInt(pup.id) === parseInt(req.params.id)
-  })
-
-  const { name, owner, breed } = req.body
-  const updatedPuppy = { ...puppy, name, owner, breed }
-
+  // merge the new data into the puppies data
   const updatedPuppyData = {
     puppies: puppyData.puppies.map((pup) => {
-      return parseInt(pup.id) === parseInt(req.params.id) ? updatedPuppy : pup
+      return parseInt(pup.id) === parseInt(req.params.id)
+        ? { ...pup, name, owner, breed }
+        : pup
     }),
   }
+
   savePuppies(updatedPuppyData)
   res.redirect(`/puppies/${req.params.id}`)
 })
