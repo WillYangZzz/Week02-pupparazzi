@@ -36,24 +36,7 @@ server.use('/puppies', puppyRouter)
 server.get('/', async (req, res) => {
   const data = await fs.readFile(dataPath, 'utf-8')
   const puppiesData = JSON.parse(data)
-  console.log(puppiesData)
   res.render('home', puppiesData)
-})
-
-server.get('/edit/:id', async (req, res) => {
-  const data = await fs.readFile(dataPath, 'utf-8')
-  const puppiesData = JSON.parse(data)
-  const puppyId = req.params.id
-  const editPuppy = puppiesData.puppies.find((el) => el == puppyId)
-
-  res.render('edit', editPuppy)
-})
-
-server.post('/edit/:id', async (req, res) => {
-  const data = await fs.readFile(dataPath, 'utf-8')
-  const puppiesData = JSON.parse(data)
-
-  res.redirect('/')
 })
 
 export default server

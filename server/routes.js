@@ -19,4 +19,24 @@ router.get('/:id', async (req, res) => {
   res.render('details', puppyObj)
 })
 
+router.get('/:id/edit', async (req, res) => {
+  const data = await fs.readFile(dataPath, 'utf-8')
+  const puppiesData = JSON.parse(data)
+  const puppyId = req.params.id
+  const editPuppy = puppiesData.puppies.find((el) => el.id == puppyId)
+  res.render('edit', editPuppy)
+})
+
+router.post('/:id/edit', async (req, res) => {
+  const puppyId = req.params.id
+  const puppyObj = { id: puppyId, ...req.body }
+
+  const data = await fs.readFile(dataPath, 'utf-8')
+  const puppiesData = JSON.parse(data)
+  puppiesData.puppies[puppyId - 1] = puppyObj
+
+  await fs.writeFile(dataPath, JSON.stringify(puppiesData, null, 2), 'utf-8')
+
+  res.redirect(`/puppies/${req.params.id}`)
+})
 export default router
