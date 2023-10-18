@@ -18,7 +18,7 @@ router.post('/new', async (req, res) => {
     puppies: [...puppyData.puppies, newPuppy],
   }
   savePuppies(updatedPuppyData)
-  res.redirect(`/${newId}`)
+  res.redirect(`/puppies/${newId}`)
 })
 
 // GET the puppy edit form
@@ -47,7 +47,7 @@ router.post('/edit/:id', async (req, res) => {
     }),
   }
   savePuppies(updatedPuppyData)
-  res.redirect(`/${req.params.id}`)
+  res.redirect(`/puppies/${req.params.id}`)
 })
 
 // GET an individual puppy detail

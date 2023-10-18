@@ -5,7 +5,7 @@ import express from 'express'
 import hbs from 'express-handlebars'
 
 import { getPuppies } from './utils/getData.js'
-import router from './routes.js'
+import puppiesRouter from './routes.js'
 
 const server = express()
 
@@ -19,7 +19,7 @@ server.engine('hbs', hbs.engine({ extname: 'hbs' }))
 server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
-server.use('/', router)
+server.use('/puppies', puppiesRouter)
 
 // Your routes/router(s) should go here
 server.get('/', async (req, res) => {
