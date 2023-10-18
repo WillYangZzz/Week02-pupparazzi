@@ -41,25 +41,9 @@ router.post('/:id/:id/edit', async (req, res) => {
 
   let puppyEdit = JSON.stringify(newJSON, null, 2)
 
-  // console.log(puppyEdit)
-
-  // await writeFile(
-  //   Path.resolve('./server/data/data.json'),
-  //   puppyEdit,
-  //   (err) => {
-  //     if (!err) {
-  //       console.log('done')
-  //     }
-  //   }
-  // )
-
   await write(puppyEdit)
 
   res.redirect(`/puppies/${id}`)
-
-  // const viewData = JSON.parse(puppiesJSON)
-
-  // res.render('edit', viewData.puppies[id - 1])
 })
 
 export default router
