@@ -1,6 +1,6 @@
 import server from './server.js'
 
-const port = 3000
+const port = 3001
 
 server.listen(port, function () {
   // eslint-disable-next-line no-console
