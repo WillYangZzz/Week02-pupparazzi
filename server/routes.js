@@ -79,4 +79,10 @@ router.post('/edit/:id', (req, res) => {
   res.redirect(`/puppies/${value}`)
 })
 
+router.get('/add', (req, res) => {
+  const template = 'add'
+
+  res.render(template)
+})
+
 export default router
