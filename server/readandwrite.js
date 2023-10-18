@@ -8,4 +8,10 @@ export async function read() {
   return JSON.parse(puppiesJSON)
 }
 
-export async function write() {}
+export async function write(data) {
+  await writeFile(Path.resolve('./server/data/data.json'), data, (err) => {
+    if (!err) {
+      console.log('done')
+    }
+  })
+}

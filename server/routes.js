@@ -1,7 +1,5 @@
 import express from 'express'
-import * as Path from 'node:path'
-import { readFile, writeFile } from 'node:fs/promises'
-import { read } from './readandwrite.js'
+import { read, write } from './readandwrite.js'
 
 const router = express.Router()
 
@@ -45,15 +43,17 @@ router.post('/:id/:id/edit', async (req, res) => {
 
   // console.log(puppyEdit)
 
-  const puppiesJSONwrite = await writeFile(
-    Path.resolve('./server/data/data.json'),
-    puppyEdit,
-    (err) => {
-      if (!err) {
-        console.log('done')
-      }
-    }
-  )
+  // await writeFile(
+  //   Path.resolve('./server/data/data.json'),
+  //   puppyEdit,
+  //   (err) => {
+  //     if (!err) {
+  //       console.log('done')
+  //     }
+  //   }
+  // )
+
+  await write(puppyEdit)
 
   res.redirect(`/puppies/${id}`)
 

@@ -2,7 +2,7 @@
   "puppies": [
     {
       "id": 1,
-      "name": "Fillis",
+      "name": "Cutie",
       "owner": "Pathik",
       "image": "/images/puppy1.jpg",
       "breed": "Canine"
