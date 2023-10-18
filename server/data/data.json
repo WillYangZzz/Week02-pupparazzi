@@ -3,16 +3,18 @@
     {
       "id": 1,
       "name": "Fido",
-      "owner": "Fred",
+      "owner": "cong",
       "image": "/images/puppy1.jpg",
-      "breed": "Labrador"
+      "breed": "Labrador",
+      "_locals": {}
     },
     {
       "id": 2,
       "name": "Coco",
-      "owner": "Chloe",
+      "owner": "Cong",
       "image": "/images/puppy2.jpg",
-      "breed": "Labrador"
+      "breed": "Labrador",
+      "_locals": {}
     },
     {
       "id": 3,
