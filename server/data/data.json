@@ -2,7 +2,7 @@
 	"puppies": [
 		{
 			"id": 1,
-			"name": "jfgyuyu",
+			"name": "dawg",
 			"owner": "Fred",
 			"image": "/images/puppy1.jpg",
 			"breed": "Labrador"
@@ -51,10 +51,10 @@
 		},
 		{
 			"id": 8,
-			"name": "dave",
-			"owner": "mr a",
-			"image": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Dingo_-_Katy_Platt_%28cropped%29.jpg",
-			"breed": "dingo"
+			"name": "scott",
+			"owner": "stray",
+			"image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQKme1D04VSXZesQnnEui6zyWUBRmswnQO7S5sxR63LxynRefv8",
+			"breed": "german shepherd"
 		}
 	]
 }

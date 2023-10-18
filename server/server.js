@@ -43,10 +43,9 @@ server.post('/new', async (req, res) => {
   const contents = await readFile(filePath, { encoding: 'utf8' })
   const viewData = JSON.parse(contents)
   const pupArray = viewData.puppies
-
   // object for the newly created dog
   const createdPup = {
-    id: 8,
+    id: pupArray.length + 1,
     name: req.body.name,
     owner: req.body.owner,
     image: req.body.image,
@@ -56,10 +55,7 @@ server.post('/new', async (req, res) => {
   pupArray.push(createdPup)
 
   // writing the newobject to the original JSON file - need to stringify before though
-  const newData = await writeFile(
-    filePath,
-    JSON.stringify(viewData, null, '\t')
-  )
+  await writeFile(filePath, JSON.stringify(viewData, null, '\t'))
   res.render('home', viewData)
 })
 
