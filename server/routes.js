@@ -11,14 +11,18 @@ router.get('/new', (req, res) => {
 // POST receive form data for a new puppy
 router.post('/new', async (req, res) => {
   const puppyData = await getPuppies()
+
+  // get the next ID
   const newId = puppyData.puppies.length + 1
 
+  // get data from form
   const { name, owner, breed, image } = req.body
-  const newPuppy = { id: newId, name, owner, breed, image }
 
+  // append new puppy to data
   const updatedPuppyData = {
-    puppies: [...puppyData.puppies, newPuppy],
+    puppies: [...puppyData.puppies, { id: newId, name, owner, breed, image }],
   }
+
   savePuppies(updatedPuppyData)
   res.redirect(`/puppies/${newId}`)
 })
