@@ -1,12 +1,11 @@
 import express from 'express'
 const router = express.Router()
 
-import getPuppyData from './getPuppies.js'
-import savePuppies from './savePuppies.js'
+import { getPuppies, savePuppies } from './utils/getData.js'
 
 // GET the puppy edit form
 router.get('/edit/:id', async (req, res) => {
-  const puppyData = await getPuppyData()
+  const puppyData = await getPuppies()
   const puppy = puppyData.puppies.find((pup) => {
     return parseInt(pup.id) === parseInt(req.params.id)
   })
@@ -15,12 +14,12 @@ router.get('/edit/:id', async (req, res) => {
 
 // POST the edited puppy data
 router.post('/edit/:id', async (req, res) => {
-  const puppyData = await getPuppyData()
-  // console.log('before', puppyData)
+  const puppyData = await getPuppies()
 
   const puppy = puppyData.puppies.find((pup) => {
     return parseInt(pup.id) === parseInt(req.params.id)
   })
+
   const { name, owner, breed } = req.body
   const updatedPuppy = { ...puppy, name, owner, breed }
 
@@ -33,14 +32,13 @@ router.post('/edit/:id', async (req, res) => {
       }
     }),
   }
-  // console.log('after', updatedPuppyData)
   savePuppies(updatedPuppyData)
   res.redirect(`/${req.params.id}`)
 })
 
 // GET an individual puppy detail
 router.get('/:id', async (req, res) => {
-  const puppyData = await getPuppyData()
+  const puppyData = await getPuppies()
   const puppy = puppyData.puppies.find((pup) => {
     return parseInt(pup.id) === parseInt(req.params.id)
   })
