@@ -18,16 +18,15 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
-// assigning path for data file & making the data into an object here
-const filePath = new URL('./data/data.json', import.meta.url)
-const contents = await readFile(filePath, { encoding: 'utf8' })
-const viewData = JSON.parse(contents)
 
 // calling things from the routes.js file
 server.use('/puppies', puppiesRouter)
 
 // homepage rendering puppies from home.hbs
 server.get('/', async (req, res) => {
+  const filePath = new URL('./data/data.json', import.meta.url)
+  const contents = await readFile(filePath, { encoding: 'utf8' })
+  const viewData = JSON.parse(contents)
   try {
     res.render('home', viewData)
   } catch (err) {
