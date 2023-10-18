@@ -25,12 +25,13 @@ server.set('views', Path.resolve('server/views'))
         const dataPath = Path.join(__dirname, './data/data.json')
         let puppydetails = await readFile(dataPath ,{encoding : "utf-8"})
         console.log(puppydetails);
-        //changing the JSON file into a JS file 
+        //changing the JSON file into a JS object file 
         let parsePuppy = JSON.parse(puppydetails)
-        console.log(parsePuppy);
+        
 
 // using created routes
 server.use("/puppies", router)
+// server.use('/edit'  , router)
 
 // Your routes/router(s) should go here
 server.get("/" , (req, res) =>{
