@@ -35,7 +35,7 @@ router.post('/edit/:id', async (req, res) => {
   }
   // console.log('after', updatedPuppyData)
   savePuppies(updatedPuppyData)
-  res.redirect('/')
+  res.redirect(`/${req.params.id}`)
 })
 
 // GET an individual puppy detail
