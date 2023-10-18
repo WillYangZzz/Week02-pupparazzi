@@ -34,4 +34,33 @@ server.get('/', async (req, res) => {
   }
 })
 
+server.get('/new', async (req, res) => {
+  res.render('new')
+})
+
+server.post('/new', async (req, res) => {
+  const filePath = new URL('./data/data.json', import.meta.url)
+  const contents = await readFile(filePath, { encoding: 'utf8' })
+  const viewData = JSON.parse(contents)
+  const pupArray = viewData.puppies
+
+  // object for the newly created dog
+  const createdPup = {
+    id: 8,
+    name: req.body.name,
+    owner: req.body.owner,
+    image: req.body.image,
+    breed: req.body.breed,
+  }
+  // pushing the object to the original array
+  pupArray.push(createdPup)
+
+  // writing the newobject to the original JSON file - need to stringify before though
+  const newData = await writeFile(
+    filePath,
+    JSON.stringify(viewData, null, '\t')
+  )
+  res.render('home', viewData)
+})
+
 export default server

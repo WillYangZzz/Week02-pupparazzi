@@ -51,13 +51,12 @@ router.post('/edit/:id', async (req, res) => {
   pupID.name = req.body.name
   pupID.breed = req.body.breed
   pupID.owner = req.body.owner
-  // redoing the updated array in the original JSON data format
+  // creating a new object with updates on the puparray
   const newObject = {
     puppies: pupArray,
   }
-
-  console.log(pupArray)
-  await writeFile(filePath, JSON.stringify(newObject))
+  // writing the newobject to the original JSON file - need to stringify before though
+  await writeFile(filePath, JSON.stringify(newObject, null, '\t'))
   res.render('details', pupID)
 })
 
