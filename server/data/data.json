@@ -1,25 +1,25 @@
 {
   "puppies": [
     {
-      "id": "1",
+      "id": 1,
       "name": "babay",
       "breed": "Labrador",
       "owner": "Fred",
       "image": "/images/puppy1.jpg"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "dfgdfgfdg",
       "breed": "Labrador",
       "owner": "Chloe",
       "image": "/images/puppy2.jpg"
     },
     {
-      "id": 3,
-      "name": "Magnum",
+      "id": "3",
+      "name": "asdgdf",
+      "breed": "Rottweiler",
       "owner": "Michael",
-      "image": "/images/puppy3.jpg",
-      "breed": "Rottweiler"
+      "image": "/images/puppy3.jpg"
     },
     {
       "id": 4,
@@ -30,10 +30,10 @@
     },
     {
       "id": 5,
-      "name": "Murphy",
+      "name": "Harry",
+      "breed": "Pug",
       "owner": "Matthew",
-      "image": "/images/puppy5.jpg",
-      "breed": "Pug"
+      "image": "/images/puppy5.jpg"
     },
     {
       "id": 6,
