@@ -54,7 +54,14 @@
       "name": "Dave",
       "owner": "Pathik",
       "image": "https://avatars.githubusercontent.com/u/14233215?v=4",
-      "breed": "Canine"
+      "breed": "Dingo"
+    },
+    {
+      "id": 9,
+      "name": "Pathik",
+      "owner": "Dave",
+      "image": "https://avatars.githubusercontent.com/u/142643540?v=4",
+      "breed": "Chihuahua"
     }
   ]
 }
