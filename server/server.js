@@ -6,13 +6,14 @@ import fsPromises from 'node:fs/promises'
 import express from 'express'
 import hbs from 'express-handlebars'
 import { readFile } from 'node:fs/promises'
-
+import puppiesRouter from './routes.js'
 const server = express()
 
 // Server configuration
 const publicFolder = Path.resolve('public')
 server.use(express.static(publicFolder))
 server.use(express.urlencoded({ extended: false }))
+server.use('/puppies', puppiesRouter)
 
 // Handlebars configuration
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
@@ -26,11 +27,12 @@ server.get('/', async (req, res) => {
 })
 
 export default server
-async function puppyData() {
+
+export async function puppyData() {
   return readFile('server/data/data.json')
     .then(function (result) {
       const parsedData = JSON.parse(result)
-      console.log('puppydata function: ', parsedData)
+      // console.log('puppydata function: ', parsedData)
       return parsedData
     })
     .catch(function (error) {
