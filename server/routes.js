@@ -33,18 +33,12 @@ router.get('/:id/edit', async (req, res) => {
 router.post('/:id/:id/edit', async (req, res) => {
   const id = req.params.id
 
-  // let puppyData = {
-  //   name: req.body.name,
-  //   breed: req.body.breed,
-  //   owner: req.body.owner,
-  // }
-
   const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
     encoding: 'utf8',
   })
   const viewData = JSON.parse(puppiesJSON)
 
-  let puppyNumber = viewData.puppies.map((el) => {
+  let puppies = viewData.puppies.map((el) => {
     if (el.id == id) {
       el.name = req.body.name
       el.breed = req.body.breed
@@ -53,7 +47,9 @@ router.post('/:id/:id/edit', async (req, res) => {
     return el
   })
 
-  let puppyEdit = JSON.stringify(puppyNumber, null, 2)
+  let newJSON = { puppies }
+
+  let puppyEdit = JSON.stringify(newJSON, null, 2)
 
   // console.log(puppyEdit)
 
@@ -67,7 +63,7 @@ router.post('/:id/:id/edit', async (req, res) => {
     }
   )
 
-  res.send(`${id - 1} is a great puppy`)
+  res.redirect(`/`)
 
   // const viewData = JSON.parse(puppiesJSON)
 

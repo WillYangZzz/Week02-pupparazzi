@@ -4,7 +4,7 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 // import puppies from './data/data.json' assert { type: 'json' }
-import { readFile, writeFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 
 import puppiesRouter from './routes.js'
 
@@ -32,14 +32,5 @@ server.get('/', async (req, res) => {
 })
 
 server.use('/puppies', puppiesRouter)
-
-// async function puppies() {
-//   const puppiesJSON = await readFile(Path.resolve('./server/data/data.json'), {
-//     encoding: 'utf8',
-//   })
-//   console.log(puppiesJSON)
-// }
-
-// puppies()
 
 export default server
