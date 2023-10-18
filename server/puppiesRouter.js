@@ -37,7 +37,5 @@ router.get('/edit/:id', (req, res) => {
 router.post('/edit/:id', (req, res) => {
   const id = req.params.id
   const newData = req.body
-
-  console.log(newData)
 })
 export default router
