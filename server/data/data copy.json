@@ -52,22 +52,6 @@
       "image": "/images/puppy7.jpg",
       "breed": "Labrador",
       "_locals": {}
-    },
-    {
-      "id": 8,
-      "name": "name",
-      "owner": "owner",
-      "image": "/images/puppy5.jpg",
-      "breed": "breedjjj",
-      "_locals": {}
-    },
-    {
-      "id": 9,
-      "name": "name",
-      "owner": "owner",
-      "image": "/images/puppy5.jpg",
-      "breed": "breed",
-      "_locals": {}
     }
   ]
 }

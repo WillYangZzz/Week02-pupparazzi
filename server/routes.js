@@ -25,6 +25,42 @@ router.get('/', (req, res) => {
   res.render(template, parsedPuppiesData)
 })
 
+router.get('/add', (req, res) => {
+  const template = 'new'
+
+  res.render(template)
+})
+
+router.post('/add', (req, res) => {
+  let idArr = []
+  for (let i=0; i<parsedPuppiesData['puppies'].length; i++) {
+    idArr.push(parsedPuppiesData['puppies'][i]['id'])
+  }
+  const maxId = Math.max(...idArr)
+  const newId = maxId + 1
+  const newPuppy = {
+    id: newId,
+    name: req.body.name,
+    owner: req.body.owner,
+    image: req.body.image,
+    breed: req.body.breed,
+  }
+  parsedPuppiesData['puppies'].push(newPuppy)
+  const newData = {
+    puppies: parsedPuppiesData,
+  }
+
+  fs.writeFile(
+    Path.join(__dirname, `./data/data.json`),
+    JSON.stringify(newData, null, 2),
+    {
+      encoding: 'utf-8',
+    }
+  )
+
+  res.redirect(`/puppies/${newId}`)
+})
+
 router.get('/:id', (req, res) => {
   const value = req.params.id
   const puppiesData = parsedPuppiesData['puppies'].find((item) => {
@@ -77,12 +113,6 @@ router.post('/edit/:id', (req, res) => {
   )
 
   res.redirect(`/puppies/${value}`)
-})
-
-router.get('/add', (req, res) => {
-  const template = 'add'
-
-  res.render(template)
 })
 
 export default router
