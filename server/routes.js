@@ -3,10 +3,12 @@ const router = express.Router()
 
 import { getPuppies, savePuppies } from './utils/getData.js'
 
+// GET display form to add a new puppy
 router.get('/new', (req, res) => {
   res.render('new')
 })
 
+// POST receive form data for a new puppy
 router.post('/new', async (req, res) => {
   const puppyData = await getPuppies()
   const newId = puppyData.puppies.length + 1
