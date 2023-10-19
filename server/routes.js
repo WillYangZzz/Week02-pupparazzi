@@ -2,10 +2,32 @@ import express from 'express'
 import { puppyData } from './server.js'
 import { writeFile } from 'fs/promises'
 const router = express.Router()
-const dogData = puppyData()
+
+router.get('/add', async (req, res) => {
+  const originalPuppyDatabase = puppyData()
+  let data = await originalPuppyDatabase
+  res.render('new', data)
+})
+
+router.post('/new', async (req, res) => {
+  const originalPuppyDatabase = puppyData()
+  let data = await originalPuppyDatabase
+  const newPuppyInput = {
+    id: data.puppies.length + 1,
+    name: req.body.name,
+    breed: req.body.breed,
+    owner: req.body.owner,
+    image: req.body.image,
+  }
+  data.puppies.push(newPuppyInput)
+  let jsonDatabase = JSON.stringify(data)
+  writeFile('server/data/data.json', jsonDatabase, 'utf-8')
+  res.redirect(`/puppies/${newPuppyInput.id}`)
+})
 
 router.get('/:id', async (req, res) => {
-  let data = await dogData
+  const originalPuppyDatabase = puppyData()
+  let data = await originalPuppyDatabase
   const id = req.params.id
   const value = data.puppies.find((item) => {
     if (item.id == id) {
@@ -16,7 +38,8 @@ router.get('/:id', async (req, res) => {
 })
 
 router.get('/edit/:id', async (req, res) => {
-  let data = await dogData
+  const originalPuppyDatabase = puppyData()
+  let data = await originalPuppyDatabase
   const id = req.params.id
   const value = data.puppies.find((item) => {
     if (item.id == id) {
@@ -29,7 +52,8 @@ router.get('/edit/:id', async (req, res) => {
 export default router
 
 router.post('/edit/:id', async (req, res) => {
-  let newPuppyObject = { puppies: '' }
+  const originalPuppyDatabase = puppyData()
+  let newPuppyDatabase = { puppies: '' }
   const id = req.params.id
   const puppyEdit = {
     id: Number(id),
@@ -37,14 +61,14 @@ router.post('/edit/:id', async (req, res) => {
     breed: req.body.breed,
     owner: req.body.owner,
   }
-  let data = await dogData
+  let data = await originalPuppyDatabase
   const value = data.puppies.find((item) => {
     if (item.id == id) {
       puppyEdit.image = item.image
       let filtered = data.puppies.filter((x) => x.id != item.id)
       filtered.push(puppyEdit)
-      newPuppyObject.puppies = filtered
-      const jsonPuppies = JSON.stringify(newPuppyObject)
+      newPuppyDatabase.puppies = filtered
+      const jsonPuppies = JSON.stringify(newPuppyDatabase)
       writeFile('server/data/data.json', jsonPuppies, 'utf-8')
       return true
     }

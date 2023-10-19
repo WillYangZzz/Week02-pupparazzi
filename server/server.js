@@ -13,7 +13,6 @@ const server = express()
 const publicFolder = Path.resolve('public')
 server.use(express.static(publicFolder))
 server.use(express.urlencoded({ extended: false }))
-server.use('/puppies', puppiesRouter)
 
 // Handlebars configuration
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
@@ -21,6 +20,8 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
+server.use('/puppies', puppiesRouter)
+
 server.get('/', async (req, res) => {
   const dogData = await puppyData()
   res.render('home', dogData)
@@ -32,7 +33,6 @@ export async function puppyData() {
   return readFile('server/data/data.json')
     .then(function (result) {
       const parsedData = JSON.parse(result)
-      // console.log('puppydata function: ', parsedData)
       return parsedData
     })
     .catch(function (error) {
