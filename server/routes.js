@@ -4,9 +4,7 @@ import { writeFile } from 'fs/promises'
 const router = express.Router()
 
 router.get('/add', async (req, res) => {
-  const originalPuppyDatabase = puppyData()
-  let data = await originalPuppyDatabase
-  res.render('new', data)
+  res.render('new')
 })
 
 router.post('/new', async (req, res) => {
