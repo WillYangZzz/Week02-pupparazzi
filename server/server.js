@@ -20,13 +20,13 @@ server.set('views', Path.resolve('server/views'))
 server.use('/puppies', puppiesRouter)
 
 server.get('/', async (req, res) => {
-  const dogData = await puppyData()
+  const dogData = await getPuppyData()
   res.render('home', dogData)
 })
 
 export default server
 
-export async function puppyData() {
+export async function getPuppyData() {
   return readFile('server/data/data.json')
     .then(function (result) {
       const parsedData = JSON.parse(result)

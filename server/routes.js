@@ -1,5 +1,5 @@
 import express from 'express'
-import { puppyData } from './server.js'
+import { getPuppyData } from './server.js'
 import { writeFile } from 'fs/promises'
 const router = express.Router()
 
@@ -8,8 +8,8 @@ router.get('/add', async (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
-  const originalPuppyDatabase = puppyData()
-  let data = await originalPuppyDatabase
+  const data = await getPuppyData()
+
   const newPuppyInput = {
     id: data.puppies.length + 1,
     name: req.body.name,
@@ -17,26 +17,25 @@ router.post('/new', async (req, res) => {
     owner: req.body.owner,
     image: req.body.image,
   }
-  data.puppies.push(newPuppyInput)
-  let jsonDatabase = JSON.stringify(data)
-  writeFile('server/data/data.json', jsonDatabase, 'utf-8')
+  // data.puppies.push(newPuppyInput)
+  const newPuppies = [...data.puppies, newPuppyInput]
+  let jsonDatabase = JSON.stringify({ puppies: newPuppies })
+  await writeFile('server/data/data.json', jsonDatabase, 'utf-8')
   res.redirect(`/puppies/${newPuppyInput.id}`)
 })
 
 router.get('/:id', async (req, res) => {
-  const originalPuppyDatabase = puppyData()
+  // TODO: fix the code below
+  const originalPuppyDatabase = getPuppyData()
   let data = await originalPuppyDatabase
   const id = req.params.id
-  const value = data.puppies.find((item) => {
-    if (item.id == id) {
-      return true
-    }
-  })
+  const value = data.puppies.find((item) => item.id === Number(id))
   res.render('details', value)
 })
 
 router.get('/edit/:id', async (req, res) => {
-  const originalPuppyDatabase = puppyData()
+  // TODO: fix the code below (if conditiona and the await)
+  const originalPuppyDatabase = getPuppyData()
   let data = await originalPuppyDatabase
   const id = req.params.id
   const value = data.puppies.find((item) => {
@@ -50,7 +49,9 @@ router.get('/edit/:id', async (req, res) => {
 export default router
 
 router.post('/edit/:id', async (req, res) => {
-  const originalPuppyDatabase = puppyData()
+  // TODO: add missing awaits
+  // re-write the array methods below to be using map and ternary operator
+  const originalPuppyDatabase = getPuppyData()
   let newPuppyDatabase = { puppies: '' }
   const id = req.params.id
   const puppyEdit = {
