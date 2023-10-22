@@ -24,9 +24,7 @@ server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
 server.get('/', (req, res) => {
-  res.send(`This is homePage <br/>
-    <a href='/puppies'>Puppies</a>
-  `)
+  res.redirect('/puppies')
 })
 
 server.use('/puppies', puppiesRouter)
