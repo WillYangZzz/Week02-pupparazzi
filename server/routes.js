@@ -35,27 +35,17 @@ router.post('/add', async (req, res) => {
   let parsedPuppiesData = await readData()
 
   // TODO: refactor this to use map and Math.max to calulcate the highest id in the data
-  let idArr = []
-  for (let i = 0; i < parsedPuppiesData['puppies'].length; i++) {
-    idArr.push(parsedPuppiesData['puppies'][i]['id'])
-  }
-  let maxId
-  if (idArr.length > 0) {
-    maxId = Math.max(...idArr)
-  } else {
-    maxId = 0
-  }
-  const newId = maxId + 1
+  let idArr = parsedPuppiesData.puppies.map(item => item.id)
+  let newId
+  idArr.length > 0? newId = Math.max(...idArr)+1: newId = 1
+
   const newPuppy = {
     id: newId,
-    name: req.body.name,
-    owner: req.body.owner,
-    image: req.body.image,
-    breed: req.body.breed,
+    ...req.body
   }
 
   // TODO: refactor this code to use the spread operator
-  parsedPuppiesData['puppies'].push(newPuppy)
+  parsedPuppiesData.puppies = [...parsedPuppiesData.puppies,newPuppy]
 
   await fs.writeFile(
     Path.join(__dirname, `./data/data.json`),
@@ -74,13 +64,7 @@ router.get('/delete/:id', async (req, res) => {
   const id = Number(req.params.id)
 
   // TODO: refactor filter to remove the if condition
-  const newArr = parsedPuppiesData['puppies'].filter((item) => {
-    if (item['id'] === id) {
-      return false
-    } else {
-      return true
-    }
-  })
+  const newArr = parsedPuppiesData.puppies.filter(item => item.id !== id)
   const newData = {
     puppies: newArr,
   }
@@ -111,11 +95,7 @@ router.get('/edit/:id', async (req, res) => {
   const parsedPuppiesData = await readData()
   const value = req.params.id
   // TODO: remove the if condition
-  const puppiesData = parsedPuppiesData['puppies'].find((item) => {
-    if (item['id'] === Number(value)) {
-      return true
-    }
-  })
+  const puppiesData = parsedPuppiesData.puppies.find(item => item.id === Number(value))
   const template = 'edit'
 
   res.render(template, puppiesData)
@@ -125,17 +105,12 @@ router.post('/edit/:id', async (req, res) => {
   const parsedPuppiesData = await readData()
 
   const value = req.params.id
-  const name = req.body.name
-  const breed = req.body.breed
-  const owner = req.body.owner
 
-  const newArr = parsedPuppiesData['puppies'].map((item) =>
-    item.id === Number(req.params.id)
+  const newArr = parsedPuppiesData.puppies.map((item) =>
+    item.id === Number(value)
       ? {
           ...item,
-          name,
-          breed,
-          owner,
+          ...req.body
         }
       : item
   )
