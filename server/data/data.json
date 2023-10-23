@@ -1,1 +1,67 @@
-{"puppies":[{"id":5,"name":"Murphy","owner":"Matthew","image":"/images/puppy5.jpg","breed":"Pug","_locals":{}},{"id":6,"name":"Bella","owner":"Brianna","image":"/images/puppy6.jpg","breed":"Labrador","_locals":{}},{"id":3,"name":"Magnumsad","breed":"Rottweilersadd","owner":"Michael","image":"/images/puppy3.jpg","_locals":{}},{"id":4,"name":"Sade","breed":"Labrador","owner":"Sam","image":"/images/puppy4.jpg","_locals":{}},{"id":7,"name":"Rocky","breed":"Labrador","owner":"Ricky","image":"/images/puppy7.jpg"},{"id":1,"name":"Fidoffsasssasdf","breed":"Labradord","owner":"Fred","image":"/images/puppy1.jpg","_locals":{}},{"id":2,"name":"Coco","breed":"Labrador","owner":"Chloe","image":"/images/puppy2.jpg"},{"id":8,"name":"Georgie Pie","breed":"Cat","owner":"Cat-Dog","image":"https://www.dogspot.in/wordpress/wp-content/uploads/2008/03/Cost_of_puppy.jpg"},{"id":9,"name":"Santas Little Helper","breed":"Dog","owner":"Homer","image":"https://pa1.aminoapps.com/6146/a5aa7fc090ea09426ccc836b2d4e1b07e47584c3_hq.gif"}]}
+{
+  "puppies": [
+    {
+      "id": 5,
+      "name": "Murphy",
+      "owner": "Matthew",
+      "image": "/images/puppy5.jpg",
+      "breed": "Pug"
+    },
+    {
+      "id": 6,
+      "name": "Bella",
+      "owner": "Brianna",
+      "image": "/images/puppy6.jpg",
+      "breed": "Labrador"
+    },
+    {
+      "id": 3,
+      "name": "Magnumsad",
+      "breed": "Rottweilersadd",
+      "owner": "Michael",
+      "image": "/images/puppy3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Sade",
+      "breed": "Labrador",
+      "owner": "Sam",
+      "image": "/images/puppy4.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Rocky",
+      "breed": "Labrador",
+      "owner": "Ricky",
+      "image": "/images/puppy7.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Fidoff",
+      "breed": "Labradord",
+      "owner": "Fred",
+      "image": "/images/puppy1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Coco",
+      "breed": "Labrador",
+      "owner": "Chloe",
+      "image": "/images/puppy2.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Georgie Pie",
+      "breed": "Cat",
+      "owner": "Cat-Dog",
+      "image": "https://www.dogspot.in/wordpress/wp-content/uploads/2008/03/Cost_of_puppy.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Santas Little Helper",
+      "breed": "Dog",
+      "owner": "Homer",
+      "image": "https://pa1.aminoapps.com/6146/a5aa7fc090ea09426ccc836b2d4e1b07e47584c3_hq.gif"
+    }
+  ]
+}

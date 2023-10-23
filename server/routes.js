@@ -9,7 +9,6 @@ router.get('/add', async (req, res) => {
 
 router.post('/new', async (req, res) => {
   const data = await getPuppyData()
-
   const newPuppyInput = {
     id: data.puppies.length + 1,
     name: req.body.name,
@@ -17,7 +16,6 @@ router.post('/new', async (req, res) => {
     owner: req.body.owner,
     image: req.body.image,
   }
-  // data.puppies.push(newPuppyInput)
   const newPuppies = [...data.puppies, newPuppyInput]
   let jsonDatabase = JSON.stringify({ puppies: newPuppies })
   await writeFile('server/data/data.json', jsonDatabase, 'utf-8')
@@ -25,23 +23,21 @@ router.post('/new', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  // TODO: fix the code below
-  const originalPuppyDatabase = getPuppyData()
-  let data = await originalPuppyDatabase
+  // TODO: fix the code below <-- Done
+  const data = await getPuppyData()
   const id = req.params.id
-  const value = data.puppies.find((item) => item.id === Number(id))
+  const value = data.puppies.find((item) => {
+    return item.id == Number(id)
+  })
   res.render('details', value)
 })
 
 router.get('/edit/:id', async (req, res) => {
-  // TODO: fix the code below (if conditiona and the await)
-  const originalPuppyDatabase = getPuppyData()
-  let data = await originalPuppyDatabase
+  // TODO: fix the code below (if conditiona and the await) <-- Done
+  const data = await getPuppyData()
   const id = req.params.id
   const value = data.puppies.find((item) => {
-    if (item.id == id) {
-      return true
-    }
+    return item.id === Number(id)
   })
   res.render('edit', value)
 })
@@ -49,28 +45,21 @@ router.get('/edit/:id', async (req, res) => {
 export default router
 
 router.post('/edit/:id', async (req, res) => {
-  // TODO: add missing awaits
-  // re-write the array methods below to be using map and ternary operator
-  const originalPuppyDatabase = getPuppyData()
-  let newPuppyDatabase = { puppies: '' }
+  // TODO: add missing awaits <-- Done
+  // re-write the array methods below to be using map and ternary operator <-- Done
+  const data = await getPuppyData()
   const id = req.params.id
   const puppyEdit = {
     id: Number(id),
     name: req.body.name,
     breed: req.body.breed,
     owner: req.body.owner,
+    image: req.body.image,
   }
-  let data = await originalPuppyDatabase
-  const value = data.puppies.find((item) => {
-    if (item.id == id) {
-      puppyEdit.image = item.image
-      let filtered = data.puppies.filter((x) => x.id != item.id)
-      filtered.push(puppyEdit)
-      newPuppyDatabase.puppies = filtered
-      const jsonPuppies = JSON.stringify(newPuppyDatabase)
-      writeFile('server/data/data.json', jsonPuppies, 'utf-8')
-      return true
-    }
+  const newPuppyData = data.puppies.map((item) => {
+    return item.id === Number(id) ? (item = puppyEdit) : item
   })
+  const jsonPuppies = JSON.stringify({ puppies: newPuppyData }, null, 2)
+  await writeFile('server/data/data.json', jsonPuppies, 'utf-8')
   res.redirect(`/puppies/${id}`)
 })
