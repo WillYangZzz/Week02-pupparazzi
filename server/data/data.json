@@ -1,6 +1,13 @@
 {
   "puppies": [
     {
+      "name": "Sad",
+      "breed": "Labra",
+      "owner": "Sam",
+      "image": "/images/puppy4.jpg",
+      "id": 4
+    },
+    {
       "id": 1,
       "name": "Fido",
       "owner": "Fred",
@@ -20,13 +27,6 @@
       "owner": "Michael",
       "image": "/images/puppy3.jpg",
       "breed": "Rottweiler"
-    },
-    {
-      "id": 4,
-      "name": "Sadie",
-      "owner": "Sam",
-      "image": "/images/puppy4.jpg",
-      "breed": "Labrador"
     },
     {
       "id": 5,

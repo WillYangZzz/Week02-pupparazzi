@@ -34,8 +34,14 @@ router.get('/edit/:id', (req, res) => {
   res.render('edit', puppy)
 })
 
-router.post('/edit/:id', (req, res) => {
+router.post('/edit/:id', async (req, res) => {
   const id = req.params.id
   const newData = req.body
+  newData.id = Number(id)
+  let newArray = puppiesArray.filter((dog) => dog['id'] != id)
+  newArray = { puppies: [newData, ...newArray] }
+  let newArrayString = JSON.stringify(newArray, null, 2)
+  await writeFile(dataFile, newArrayString, { encoding: 'utf8' })
+  res.redirect(`/${id}`)
 })
 export default router
