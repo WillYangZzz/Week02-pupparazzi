@@ -1,25 +1,33 @@
 {
   "puppies": [
     {
+      "name": "coco",
+      "breed": "Labrador",
+      "owner": "Chloe",
+      "image": "/images/puppy2.jpg",
+      "id": 2
+    },
+    {
+      "name": "Rocky",
+      "breed": "Labrador",
+      "owner": "Ricky",
+      "image": "/images/puppy7.jpg",
+      "id": 7
+    },
+    {
+      "name": "Fid",
+      "breed": "Labrad",
+      "owner": "Fred",
+      "image": "/images/puppy1.jpg",
+      "id": 1
+    },
+    {
       "name": "Sad",
       "breed": "Labra",
       "owner": "Sam",
       "image": "/images/puppy4.jpg",
-      "id": 4
-    },
-    {
-      "id": 1,
-      "name": "Fido",
-      "owner": "Fred",
-      "image": "/images/puppy1.jpg",
-      "breed": "Labrador"
-    },
-    {
-      "id": 2,
-      "name": "Coco",
-      "owner": "Chloe",
-      "image": "/images/puppy2.jpg",
-      "breed": "Labrador"
+      "id": 4,
+      "_locals": {}
     },
     {
       "id": 3,
@@ -40,13 +48,6 @@
       "name": "Bella",
       "owner": "Brianna",
       "image": "/images/puppy6.jpg",
-      "breed": "Labrador"
-    },
-    {
-      "id": 7,
-      "name": "Rocky",
-      "owner": "Ricky",
-      "image": "/images/puppy7.jpg",
       "breed": "Labrador"
     }
   ]
