@@ -22,18 +22,18 @@
       "breed": "Rottweiler"
     },
     {
-      "id": 4,
-      "name": "Sadie",
-      "owner": "Sam",
-      "image": "/images/puppy4.jpg",
-      "breed": "Labrador"
+      "id": "4",
+      "name": "Simba",
+      "breed": "Labrador",
+      "owner": "Grant",
+      "image": "/images/puppy4.jpg"
     },
     {
-      "id": 5,
-      "name": "Murphy",
-      "owner": "Matthew",
-      "image": "/images/puppy5.jpg",
-      "breed": "Pug"
+      "id": "5",
+      "name": "Ciera",
+      "breed": "Pug",
+      "owner": "Rwema",
+      "image": "/images/puppy5.jpg"
     },
     {
       "id": 6,

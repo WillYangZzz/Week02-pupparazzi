@@ -15,8 +15,8 @@ router.get('/:id', async (req, res) => {
   const data = await fs.readFile(dataPath, 'utf-8')
   const puppiesData = JSON.parse(data)
   const puppyId = req.params.id
-  const puppyObj = puppiesData.puppies.find((el) => el.id == puppyId)
-  res.render('details', puppyObj)
+  const puppiesList = puppiesData.puppies.find((el) => el.id == puppyId)
+  res.render('details', puppiesList)
 })
 
 router.get('/:id/edit', async (req, res) => {
@@ -33,6 +33,7 @@ router.post('/:id/edit', async (req, res) => {
 
   const data = await fs.readFile(dataPath, 'utf-8')
   const puppiesData = JSON.parse(data)
+  // puppiesData.puppies[puppyId - 1] = puppyObj
 
   const updatedPuppy = puppiesData.puppies.map((el) => {
     if (el.id == puppyId) {
