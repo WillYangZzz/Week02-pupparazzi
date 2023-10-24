@@ -1,9 +1,7 @@
-import { within } from '@testing-library/dom'
-import { JSDOM } from 'jsdom'
+import { defineConfig, configDefaults } from 'vitest/config'
 
-const render = (response) => {
-  const { document } = new JSDOM(response.text).window
-  return within(document)
-}
-
-export { render }
+export default defineConfig({
+  test: {
+    exclude: [...configDefaults.exclude, './e2e-tests'],
+  },
+})
