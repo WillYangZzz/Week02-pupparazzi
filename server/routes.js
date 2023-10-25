@@ -37,10 +37,16 @@ router.get("/edit/:id", (req, res) =>{
     })
         res.render("edit", dog)
     })
+
 router.post("/edit/:id", (req, res) =>{
 const value = req.params.id
+// create form puppy using values from req.body
 
+// find the right puppy from data
 
+// re-assign the right puppy's values to be form puppy's values
+
+// redirect to single puppy page so user can see their changes. 
 })
 
 
