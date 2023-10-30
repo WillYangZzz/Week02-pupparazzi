@@ -2,31 +2,31 @@
   "puppies": [
     {
       "id": 1,
-      "name": "Fido",
-      "owner": "Fred",
-      "image": "/images/puppy1.jpg",
-      "breed": "Labrador"
+      "name": "baby",
+      "breed": "gu",
+      "owner": "dsadsadsa dsadasFreddwadwa",
+      "image": "/images/puppy1.jpg"
     },
     {
       "id": 2,
-      "name": "Coco",
+      "name": "Cocodsada",
+      "breed": "Labradorsdadsadsa",
       "owner": "Chloe",
-      "image": "/images/puppy2.jpg",
-      "breed": "Labrador"
+      "image": "/images/puppy2.jpg"
     },
     {
       "id": 3,
       "name": "Magnum",
-      "owner": "Michael",
-      "image": "/images/puppy3.jpg",
-      "breed": "Rottweiler"
+      "breed": "Rottweiler",
+      "owner": "Michaeldsadada",
+      "image": "/images/puppy3.jpg"
     },
     {
       "id": 4,
-      "name": "Sadie",
-      "owner": "Sam",
-      "image": "/images/puppy4.jpg",
-      "breed": "Labrador"
+      "name": "Sadiedsadsadas",
+      "breed": "Labradoraaa",
+      "owner": "Samirsadsadsa",
+      "image": "/images/puppy4.jpg"
     },
     {
       "id": 5,
