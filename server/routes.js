@@ -1,17 +1,39 @@
-import express, { Router } from 'express'
+import express from 'express'
 
-import fs from 'node:fs/promises'
+import * as Path from 'node:path'
+import * as url from 'node:url'
 
-const router = express.Router
+import { readFile, writeFile } from 'node:fs/promises'
+
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = Path.dirname(__filename)
+const jsonPath = Path.join(__dirname, './data/data.json')
+
+const router = express.Router()
+
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const getData = await readFile(jsonPath, 'utf-8')
+//     const unPack = JSON.parse(getData)
+
+//     const byId = req.params.id(unPack)
+
+//     res.render('details', byId)
+//   } catch (error) {
+//     console.log('not found')
+//   }
+// })
 
 router.get('/:id', async (req, res) => {
   try {
-    const getData = await fs.readFile('./server/data/data.json', 'utf-8')
+    const getData = await readFile(jsonPath, 'utf-8')
     const unPack = JSON.parse(getData)
-    res.render('home', unPack)
+    const byId = unPack.find((puppy) => puppy.id === Number(req.params.id))
+
+    res.render('details', byId)
   } catch (error) {
     console.log('not found')
   }
 })
 
-export default Router
+export default router
