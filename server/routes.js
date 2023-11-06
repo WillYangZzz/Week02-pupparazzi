@@ -14,13 +14,12 @@ const router = express.Router()
 router.get('/:id', async (req, res) => {
   try {
     const getData = await readFile(jsonPath, 'utf-8')
-    const unPack = JSON.parse(getData)
-    // Have to dot into the puppies object of unPack, so that you can use find on an array.
-    const byId = unPack.puppies.find(
+    const puppiesObj = JSON.parse(getData)
+    const puppiesArr = puppiesObj.puppies
+    const puppyById = puppiesArr.find(
       (puppy) => puppy.id === Number(req.params.id)
     )
-    // Also edited the <a> href link in 'home' for a single puppy - added `puppies/{{id}}`
-    res.render('details', byId)
+    res.render('details', puppyById)
   } catch (error) {
     console.log('not found')
   }
