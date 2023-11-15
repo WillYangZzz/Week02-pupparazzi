@@ -2,11 +2,11 @@ import * as Path from 'node:path'
 
 import * as url from 'node:url'
 
-import express, { Router } from 'express'
+import express from 'express'
 import hbs from 'express-handlebars'
 import { readFile } from 'node:fs/promises'
-import { log } from 'node:console'
-import { isUtf8 } from 'node:buffer'
+// import { log } from 'node:console'
+// import { isUtf8 } from 'node:buffer'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = Path.dirname(__filename)
@@ -28,7 +28,7 @@ server.set('views', Path.resolve('server/views'))
 // Your routes/router(s) should go here
 
 // server.use setup to read routes from routes.js
-server.use('/router', router)
+server.use('/puppies', router)
 
 server.get('/', async (req, res) => {
   try {
