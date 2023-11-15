@@ -25,4 +25,12 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+// router.get('/:id/edit', async (req, res) => {
+//   try {
+//     const writeData =
+//   } catch (error) {
+//     console.log('not found')
+//   }
+// })
+
 export default router
