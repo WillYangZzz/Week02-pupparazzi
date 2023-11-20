@@ -28,7 +28,7 @@ server.set('views', Path.resolve('server/views'))
 // Your routes/router(s) should go here
 
 // server.use setup to read routes from routes.js
-server.use('/puppies', router)
+server.use('/', router)
 
 server.get('/', async (req, res) => {
   try {
