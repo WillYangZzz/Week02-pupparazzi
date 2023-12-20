@@ -3,7 +3,9 @@ import * as Path from 'node:path'
 
 import express from 'express'
 import hbs from 'express-handlebars'
+import fs from 'node:fs/promises'
 
+const dataPath = Path.join(__dirname, './data/data.json')
 const server = express()
 
 // Server configuration
@@ -18,7 +20,9 @@ server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
 server.get('/', async (req, res) => {
-  res.send('Pupparazzi')
+  const data = await fs.readFile(dataPath, 'utf-8')
+  const puppiesData = JSON.parse(data)
+  res.render('home', puppiesData)
 })
 
 export default server
