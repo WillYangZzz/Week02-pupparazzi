@@ -1,5 +1,4 @@
 import * as Path from 'node:path'
-// import * as URL from 'node:url'
 import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -7,10 +6,17 @@ const __dirname = Path.dirname(__filename)
 
 import express from 'express'
 import hbs from 'express-handlebars'
-import fs from 'node:fs/promises'
 import puppyRouter from './routes.js'
+import fs from 'node:fs/promises'
 
 const dataPath = Path.join(__dirname, './data/data.json')
+
+// async function getData() {
+//   const data = await fs.readFile(dataPath, 'utf-8')
+//   const puppies = JSON.parse(data)
+//   return puppies
+// }
+
 const server = express()
 
 // Server configuration

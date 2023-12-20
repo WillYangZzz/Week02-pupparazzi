@@ -50,5 +50,4 @@ router.post('/:id/edit', async (req, res) => {
 
   res.redirect(`/puppies/${req.params.id}`)
 })
-
 export default router
