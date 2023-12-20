@@ -4,7 +4,6 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 
-
 const server = express()
 
 // Server configuration
@@ -18,5 +17,8 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
+server.get('/', async (req, res) => {
+  res.send('Pupparazzi')
+})
 
 export default server
