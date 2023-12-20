@@ -8,11 +8,11 @@
       "breed": "Labrador"
     },
     {
-      "id": 2,
-      "name": "Coco",
+      "id": "2",
+      "name": "awoawo",
+      "breed": "Labrador",
       "owner": "Chloe",
-      "image": "/images/puppy2.jpg",
-      "breed": "Labrador"
+      "image": "/images/puppy2.jpg"
     },
     {
       "id": 3,

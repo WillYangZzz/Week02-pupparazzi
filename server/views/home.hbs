@@ -1,7 +1,11 @@
-<div class="container">
+<div class='container'>
   {{#each puppies}}
-  <div class="puppy-list">
-    <a href="/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
-  </div>
+    <div class='puppy-list'>
+      <a href='/puppies/{{id}}'><img
+          class='img-circle'
+          src='{{image}}'
+          alt='{{name}}'
+        /></a>
+    </div>
   {{/each}}
 </div>

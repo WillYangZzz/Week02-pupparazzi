@@ -11,12 +11,6 @@ import fs from 'node:fs/promises'
 
 const dataPath = Path.join(__dirname, './data/data.json')
 
-// async function getData() {
-//   const data = await fs.readFile(dataPath, 'utf-8')
-//   const puppies = JSON.parse(data)
-//   return puppies
-// }
-
 const server = express()
 
 // Server configuration
